@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure Patient Medical Record Portal - View and manage your medical records">
+    <title>Secure Patient Medical Record Portal</title>
+    
+    <!-- Stylesheets -->
+    <!-- Global styles and layout -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Dashboard-specific styles -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    <!-- Medical history timeline styles -->
+    <link rel="stylesheet" href="css/timeline.css">
+    <!-- Access control and consent toggle styles -->
+    <link rel="stylesheet" href="css/access-control.css">
+    <!-- Interoperability awareness styles -->
+    <link rel="stylesheet" href="css/interoperability.css">
+    <!-- Emergency access feature styles -->
+    <link rel="stylesheet" href="css/emergency.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="app-container">
+        
+        <!-- Header Section -->
+        <header class="main-header" role="banner">
+            <div class="header-content">
+                <h1 class="site-title">Secure Patient Medical Record Portal</h1>
+                <div class="patient-info">
+                    <span class="patient-name" id="patient-name">Demo Patient</span>
+                    <span class="patient-id" id="patient-id">ID: P-2026-001234</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Section -->
+        <nav class="main-nav" role="navigation" aria-label="Main navigation">
+            <ul class="nav-list">
+                <li><a href="#dashboard" class="nav-link active" data-section="dashboard">Dashboard</a></li>
+                <li><a href="#timeline" class="nav-link" data-section="timeline">Medical History</a></li>
+                <li><a href="#access-control" class="nav-link" data-section="access-control">Access Control</a></li>
+                <li><a href="#interoperability" class="nav-link" data-section="interoperability">Interoperability</a></li>
+                <li><a href="#emergency" class="nav-link" data-section="emergency">Emergency Access</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content" role="main">
+            
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active" aria-labelledby="dashboard-heading">
+                <h2 id="dashboard-heading" class="section-heading">Patient Dashboard</h2>
+                
+                <!-- Encrypted Data Indicators -->
+                <div class="encryption-status" role="status" aria-live="polite">
+                    <div class="encryption-indicator" id="encryption-indicator">
+                        <span class="encryption-icon" aria-hidden="true">🔒</span>
+                        <span class="encryption-text">Data Encrypted</span>
+                    </div>
+                </div>
+
+                <!-- Dashboard Summary Cards -->
+                <div class="dashboard-grid">
+                    <article class="summary-card">
+                        <h3 class="card-title">Recent Records</h3>
+                        <div class="card-content" id="recent-records">
+                            <!-- Recent medical records will be displayed here -->
+                        </div>
+                    </article>
+
+                    <article class="summary-card">
+                        <h3 class="card-title">Active Medications</h3>
+                        <div class="card-content" id="active-medications">
+                            <!-- Active medications will be displayed here -->
+                        </div>
+                    </article>
+
+                    <article class="summary-card">
+                        <h3 class="card-title">Upcoming Appointments</h3>
+                        <div class="card-content" id="upcoming-appointments">
+                            <!-- Upcoming appointments will be displayed here -->
+                        </div>
+                    </article>
+
+                    <article class="summary-card">
+                        <h3 class="card-title">Health Summary</h3>
+                        <div class="card-content" id="health-summary">
+                            <!-- Health summary will be displayed here -->
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Medical History Timeline Section -->
+            <section id="timeline" class="content-section" aria-labelledby="timeline-heading">
+                <h2 id="timeline-heading" class="section-heading">Medical History Timeline</h2>
+                
+                <!-- Timeline Container -->
+                <div class="timeline-container" role="region" aria-label="Chronological medical history">
+                    <div class="timeline-wrapper" id="timeline-wrapper">
+                        <!-- Chronological medical records will be rendered here -->
+                        <!-- Timeline items will be added dynamically via JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Timeline Filters (Optional) -->
+                <div class="timeline-filters">
+                    <button class="filter-btn" data-filter="all" aria-label="Show all records">All</button>
+                    <button class="filter-btn" data-filter="diagnosis" aria-label="Filter by diagnosis">Diagnosis</button>
+                    <button class="filter-btn" data-filter="medication" aria-label="Filter by medication">Medications</button>
+                    <button class="filter-btn" data-filter="procedure" aria-label="Filter by procedures">Procedures</button>
+                </div>
+            </section>
+
+            <!-- Access Control Section -->
+            <section id="access-control" class="content-section" aria-labelledby="access-control-heading">
+                <h2 id="access-control-heading" class="section-heading">Access Control & Consent</h2>
+                
+                <!-- Consent Management -->
+                <div class="consent-container" role="region" aria-label="Consent management">
+                    <h3 class="subsection-heading">Data Sharing Consent</h3>
+                    
+                    <!-- Consent Toggles -->
+                    <div class="consent-list" id="consent-list">
+                        <!-- Consent toggles will be dynamically generated -->
+                        <!-- Each consent item will have a toggle switch -->
+                    </div>
+
+                    <!-- Hospital Access Control -->
+                    <div class="hospital-access-container">
+                        <h3 class="subsection-heading">Hospital Access Permissions</h3>
+                        <p class="section-description">Manage which hospitals can access your medical records</p>
+                        <div class="hospital-list" id="hospital-list">
+                            <!-- Hospital access toggles will be dynamically generated -->
+                        </div>
+                    </div>
+
+                    <!-- Access Log -->
+                    <div class="access-log-container">
+                        <h3 class="subsection-heading">Access History</h3>
+                        <div class="access-log" id="access-log" role="log" aria-live="polite">
+                            <!-- Access history entries will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interoperability Awareness Section -->
+            <section id="interoperability" class="content-section" aria-labelledby="interoperability-heading">
+                <h2 id="interoperability-heading" class="section-heading">Interoperability Awareness</h2>
+                
+                <!-- Interoperability Info Panel -->
+                <div class="interoperability-info" role="region" aria-label="Interoperability information">
+                    <div class="info-card">
+                        <div class="info-icon">🔄</div>
+                        <div class="info-content">
+                            <h3 class="info-title">Unified Data Presentation</h3>
+                            <p class="info-description">
+                                Your medical records are received from multiple hospitals in various formats (JSON, XML, CSV). 
+                                Our system automatically converts and displays them in a unified, easy-to-read format.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Source Hospitals Display -->
+                <div class="interoperability-sources">
+                    <h3 class="subsection-heading">Records from Multiple Sources</h3>
+                    <div class="sources-grid" id="sources-grid">
+                        <!-- Hospital source cards will be dynamically generated -->
+                    </div>
+                </div>
+
+                <!-- Unified Records Display -->
+                <div class="unified-records-container">
+                    <h3 class="subsection-heading">Unified Medical Records View</h3>
+                    <p class="section-description">
+                        All records are automatically standardized and displayed in a consistent format, 
+                        regardless of their original data format.
+                    </p>
+                    <div class="unified-records-grid" id="unified-records-grid">
+                        <!-- Unified records will be displayed here -->
+                    </div>
+                </div>
+
+                <!-- Format Indicators -->
+                <div class="format-indicators">
+                    <div class="format-indicator-card">
+                        <span class="format-badge format-json">JSON</span>
+                        <span class="format-badge format-xml">XML</span>
+                        <span class="format-badge format-csv">CSV</span>
+                        <p class="format-note">Multiple formats automatically converted</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Emergency Access Section -->
+            <section id="emergency" class="content-section" aria-labelledby="emergency-heading">
+                <h2 id="emergency-heading" class="section-heading">Emergency Access</h2>
+                
+                <!-- Emergency Access Panel -->
+                <div class="emergency-panel" role="region" aria-label="Emergency access">
+                    <div class="emergency-warning" role="alert">
+                        <p class="warning-text">Emergency access grants temporary full access to your medical records.</p>
+                    </div>
+
+                    <!-- Emergency Access Button -->
+                    <button class="emergency-btn" id="emergency-access-btn" aria-label="Activate emergency access">
+                        Activate Emergency Access
+                    </button>
+
+                    <!-- Time-bound Visual Confirmation -->
+                    <div class="emergency-confirmation" id="emergency-confirmation" role="dialog" aria-labelledby="emergency-confirmation-title" aria-hidden="true">
+                        <div class="confirmation-content">
+                            <!-- Biometric-style Visual Confirmation -->
+                            <div class="biometric-confirmation" id="biometric-confirmation">
+                                <div class="biometric-circle">
+                                    <div class="biometric-inner">
+                                        <div class="biometric-icon">✓</div>
+                                    </div>
+                                </div>
+                                <div class="biometric-rings">
+                                    <div class="ring ring-1"></div>
+                                    <div class="ring ring-2"></div>
+                                    <div class="ring ring-3"></div>
+                                </div>
+                            </div>
+                            
+                            <h3 id="emergency-confirmation-title">Emergency Access Activated</h3>
+                            
+                            <div class="access-info">
+                                <p class="access-description">
+                                    <strong>Patient-Controlled Access:</strong> You have full control over this emergency access. 
+                                    It will automatically expire after the countdown, or you can revoke it at any time.
+                                </p>
+                                <p class="access-temporary">
+                                    <span class="temporary-icon">⏱️</span>
+                                    <strong>Temporary Access:</strong> This access is time-limited for your security and privacy.
+                                </p>
+                            </div>
+                            
+                            <div class="countdown-container">
+                                <div class="countdown-label">Time Remaining</div>
+                                <div class="countdown-timer" id="countdown-timer" aria-live="polite">
+                                    <!-- Countdown timer will be displayed here -->
+                                </div>
+                            </div>
+                            
+                            <div class="confirmation-actions">
+                                <button class="close-emergency-btn" id="close-emergency-btn" aria-label="Revoke emergency access">
+                                    Revoke Access Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Access Status -->
+                    <div class="emergency-status" id="emergency-status" role="status" aria-live="polite">
+                        <!-- Emergency access status will be displayed here -->
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="main-footer" role="contentinfo">
+            <div class="footer-content">
+                <p class="footer-text">&copy; 2024 Secure Patient Medical Record Portal. All rights reserved.</p>
+                <p class="footer-disclaimer">This is a frontend-only demonstration. No real data is stored or transmitted.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript Files -->
+    <!-- Main application logic and initialization -->
+    <script src="js/main.js"></script>
+    <!-- Dashboard functionality and data display -->
+    <script src="js/dashboard.js"></script>
+    <!-- Medical history timeline rendering and chronological display -->
+    <script src="js/timeline.js"></script>
+    <!-- Access control UI and consent toggle management -->
+    <script src="js/access-control.js"></script>
+    <!-- Emergency access feature with time-bound visual confirmation -->
+    <script src="js/emergency.js"></script>
+    <!-- Data processing and unified presentation (no JSON/XML/CSV display) -->
+    <script src="js/data-handler.js"></script>
+    <!-- Encrypted data indicators and visual security elements -->
+    <script src="js/encryption-indicators.js"></script>
+    <!-- Consent toggles and emergency access timer -->
+    <script src="js/script.js"></script>
+</body>
+</html>
