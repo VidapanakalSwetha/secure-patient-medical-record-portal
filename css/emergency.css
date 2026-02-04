@@ -1,0 +1,485 @@
+/* ============================================
+   Emergency Access Feature Styles
+   ============================================ */
+
+/* Emergency Panel */
+.emergency-panel {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+/* Emergency Warning */
+.emergency-warning {
+    background-color: #fff3cd;
+    border: 2px solid var(--warning);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+}
+
+.warning-text {
+    color: #856404;
+    font-weight: 600;
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+/* Emergency Button */
+.emergency-btn {
+    width: 100%;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: var(--white);
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+    transition: all var(--transition-fast);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 2px solid #dc3545;
+    position: relative;
+    overflow: hidden;
+}
+
+.emergency-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.emergency-btn:hover:not(:disabled)::before {
+    width: 300px;
+    height: 300px;
+}
+
+.emergency-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #c82333 0%, #dc3545 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.5);
+    border-color: #dc3545;
+}
+
+.emergency-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.emergency-btn:disabled {
+    background: var(--medium-gray);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Emergency Confirmation Dialog */
+.emergency-confirmation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+}
+
+.emergency-confirmation.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.confirmation-content {
+    background-color: var(--white);
+    padding: var(--spacing-xxl);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    animation: slideIn var(--transition-normal);
+}
+
+@keyframes slideIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.confirmation-content h3 {
+    color: var(--danger);
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-xl);
+    font-weight: 700;
+}
+
+/* Biometric-style Visual Confirmation */
+.biometric-confirmation {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.biometric-circle {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 0 30px rgba(40, 167, 69, 0.4);
+}
+
+.biometric-inner {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulseInner 2s ease-in-out infinite;
+}
+
+.biometric-icon {
+    font-size: 4rem;
+    color: #28a745;
+    font-weight: bold;
+    animation: checkmark 0.6s ease-in-out;
+}
+
+.biometric-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+}
+
+.ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 3px solid #28a745;
+    opacity: 0;
+}
+
+.ring-1 {
+    width: 150px;
+    height: 150px;
+    animation: ringExpand 2s ease-out infinite;
+}
+
+.ring-2 {
+    width: 150px;
+    height: 150px;
+    animation: ringExpand 2s ease-out 0.3s infinite;
+}
+
+.ring-3 {
+    width: 150px;
+    height: 150px;
+    animation: ringExpand 2s ease-out 0.6s infinite;
+}
+
+.biometric-confirmation.animate .ring-1,
+.biometric-confirmation.animate .ring-2,
+.biometric-confirmation.animate .ring-3 {
+    animation-play-state: running;
+}
+
+@keyframes ringExpand {
+    0% {
+        width: 150px;
+        height: 150px;
+        opacity: 0.8;
+    }
+    100% {
+        width: 250px;
+        height: 250px;
+        opacity: 0;
+    }
+}
+
+@keyframes pulseInner {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes checkmark {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Access Info */
+.access-info {
+    margin: var(--spacing-xl) 0;
+    text-align: left;
+    background-color: var(--off-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-blue);
+}
+
+.access-description {
+    color: var(--text-primary);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+}
+
+.access-description strong {
+    color: var(--primary-blue);
+}
+
+.access-temporary {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--light-gray);
+}
+
+.temporary-icon {
+    font-size: 1.2rem;
+}
+
+.access-temporary strong {
+    color: var(--text-primary);
+}
+
+/* Countdown Container */
+.countdown-container {
+    margin: var(--spacing-xl) 0;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--off-white) 0%, var(--white) 100%);
+    border-radius: var(--radius-md);
+    border: 2px solid var(--primary-blue);
+}
+
+.countdown-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+/* Countdown Timer */
+.countdown-timer {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    font-family: 'Courier New', monospace;
+    padding: var(--spacing-md);
+    display: inline-block;
+    min-width: 200px;
+    transition: all var(--transition-fast);
+    letter-spacing: 2px;
+}
+
+.countdown-timer.warning {
+    color: var(--danger);
+    border-color: var(--danger);
+    background-color: #ffe6e6;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.confirmation-message {
+    color: var(--text-secondary);
+    margin: var(--spacing-lg) 0;
+    font-size: 1.1rem;
+}
+
+/* Confirmation Actions */
+.confirmation-actions {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--light-gray);
+}
+
+/* Close Emergency Button */
+.close-emergency-btn {
+    padding: var(--spacing-md) var(--spacing-xl);
+    background-color: var(--danger);
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    border: 2px solid var(--danger);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.close-emergency-btn:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+/* Emergency Status */
+.emergency-status {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-md);
+    text-align: center;
+    border-radius: var(--radius-md);
+    background-color: var(--off-white);
+    font-weight: 600;
+}
+
+.emergency-status.active {
+    background-color: #ffe6e6;
+    border: 2px solid var(--danger);
+}
+
+.emergency-status .status-active {
+    color: var(--danger);
+    font-size: 1.1rem;
+}
+
+.emergency-status .status-inactive {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .emergency-panel {
+        padding: var(--spacing-md);
+    }
+
+    .confirmation-content {
+        padding: var(--spacing-xl);
+        width: 95%;
+    }
+
+    .biometric-confirmation {
+        width: 150px;
+        height: 150px;
+    }
+
+    .biometric-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .biometric-inner {
+        width: 100px;
+        height: 100px;
+    }
+
+    .biometric-icon {
+        font-size: 3rem;
+    }
+
+    .countdown-timer {
+        font-size: 2.5rem;
+        min-width: 150px;
+    }
+
+    .confirmation-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .emergency-btn {
+        font-size: 1rem;
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    .access-info {
+        padding: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .biometric-confirmation {
+        width: 120px;
+        height: 120px;
+    }
+
+    .biometric-circle {
+        width: 100px;
+        height: 100px;
+    }
+
+    .biometric-inner {
+        width: 80px;
+        height: 80px;
+    }
+
+    .biometric-icon {
+        font-size: 2.5rem;
+    }
+
+    .countdown-timer {
+        font-size: 2rem;
+        min-width: 120px;
+    }
+
+    .confirmation-content {
+        padding: var(--spacing-lg);
+    }
+
+    .access-description,
+    .access-temporary {
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,537 @@
+/* ============================================
+   Access Control & Consent Toggle Styles
+   ============================================ */
+
+/* Consent Container */
+.consent-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Consent List */
+.consent-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Consent Item */
+.consent-item {
+    background-color: var(--white);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+}
+
+.consent-item:hover {
+    border-color: var(--primary-blue-light);
+    box-shadow: var(--shadow-md);
+}
+
+/* Consent Header */
+.consent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.consent-info {
+    flex: 1;
+}
+
+.consent-title {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.consent-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.consent-toggle {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--medium-gray);
+    transition: var(--transition-fast);
+    border-radius: 34px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--white);
+    transition: var(--transition-fast);
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+}
+
+.consent-toggle:checked + .toggle-slider {
+    background-color: var(--medical-teal);
+}
+
+.consent-toggle:checked + .toggle-slider:before {
+    transform: translateX(26px);
+}
+
+.consent-toggle:focus + .toggle-slider {
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3);
+}
+
+.toggle-switch:hover .toggle-slider {
+    box-shadow: var(--shadow-md);
+}
+
+/* Consent Meta */
+.consent-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--light-gray);
+    font-size: 0.9rem;
+}
+
+.consent-status {
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.status-active {
+    background-color: var(--success);
+    color: var(--white);
+}
+
+.status-inactive {
+    background-color: var(--light-gray);
+    color: var(--text-secondary);
+}
+
+.consent-date {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Access Log Container */
+.access-log-container {
+    margin-top: var(--spacing-xxl);
+    padding-top: var(--spacing-xl);
+    border-top: 2px solid var(--light-gray);
+}
+
+.access-log {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    max-height: 400px;
+    overflow-y: auto;
+    padding: var(--spacing-md);
+    background-color: var(--off-white);
+    border-radius: var(--radius-md);
+}
+
+/* Access Log Entry */
+.access-log-entry {
+    background-color: var(--white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-blue);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast);
+}
+
+.access-log-entry:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-md);
+}
+
+.log-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.log-entity {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.log-entity strong {
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.log-type {
+    font-size: 0.85rem;
+    color: var(--primary-blue);
+    font-weight: 500;
+}
+
+.log-action {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.log-timestamp {
+    font-size: 0.85rem;
+    color: var(--medium-gray);
+    font-style: italic;
+}
+
+/* Consent Notification */
+.consent-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--success);
+    color: var(--white);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all var(--transition-normal);
+    pointer-events: none;
+    max-width: 300px;
+}
+
+.consent-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* ============================================
+   Hospital Access Control Styles
+   ============================================ */
+
+/* Hospital Access Container */
+.hospital-access-container {
+    margin-top: var(--spacing-xxl);
+    padding-top: var(--spacing-xl);
+    border-top: 2px solid var(--light-gray);
+}
+
+.section-description {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+    font-size: 0.95rem;
+}
+
+/* Hospital List */
+.hospital-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Hospital Item */
+.hospital-item {
+    background-color: var(--white);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+}
+
+.hospital-item.has-access {
+    border-color: var(--medical-green);
+    background: linear-gradient(to right, rgba(40, 167, 69, 0.05), var(--white));
+    box-shadow: 0 0 0 1px var(--medical-green), var(--shadow-md);
+}
+
+.hospital-item.no-access {
+    border-color: var(--light-gray);
+    opacity: 0.85;
+}
+
+.hospital-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.hospital-item.has-access:hover {
+    box-shadow: 0 0 0 1px var(--medical-green), var(--shadow-lg);
+}
+
+/* Hospital Header */
+.hospital-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.hospital-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--off-white);
+    border-radius: var(--radius-md);
+    border: 2px solid var(--light-gray);
+}
+
+.hospital-item.has-access .hospital-icon {
+    background-color: #e8f5e9;
+    border-color: var(--medical-green);
+}
+
+.hospital-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.hospital-name {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+}
+
+.hospital-location {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.hospital-type {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--off-white);
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.hospital-item.has-access .hospital-type {
+    background-color: #e8f5e9;
+    color: var(--medical-green);
+}
+
+/* Hospital Access Control */
+.hospital-access-control {
+    flex-shrink: 0;
+}
+
+.hospital-toggle {
+    margin-top: var(--spacing-xs);
+}
+
+/* Hospital Status */
+.hospital-status {
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--light-gray);
+}
+
+.hospital-status-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+/* Access Status Badge */
+.access-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.status-granted {
+    background-color: #e8f5e9;
+    color: var(--medical-green);
+    border: 1px solid var(--medical-green);
+}
+
+.status-revoked {
+    background-color: #f8f9fa;
+    color: var(--text-secondary);
+    border: 1px solid var(--light-gray);
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: currentColor;
+    animation: pulse-indicator 2s infinite;
+}
+
+.status-granted .status-indicator {
+    background-color: var(--medical-green);
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+}
+
+.status-revoked .status-indicator {
+    background-color: var(--medium-gray);
+}
+
+@keyframes pulse-indicator {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(0.9);
+    }
+}
+
+.hospital-last-access {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Hospital Permission Details */
+.hospital-permission-details {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: #e8f5e9;
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--medical-green);
+}
+
+.permission-text {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.permission-text strong {
+    color: var(--medical-green);
+}
+
+/* Hospital Notification */
+.hospital-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all var(--transition-normal);
+    pointer-events: none;
+    max-width: 400px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.hospital-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.notification-granted {
+    background-color: var(--medical-green);
+    color: var(--white);
+    border: 2px solid var(--medical-green);
+}
+
+.notification-revoked {
+    background-color: var(--danger);
+    color: var(--white);
+    border: 2px solid var(--danger);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .consent-header {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .toggle-switch {
+        align-self: flex-start;
+    }
+
+    .consent-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    .log-main {
+        flex-direction: column;
+    }
+
+    .consent-notification {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+
+    .hospital-header {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .hospital-access-control {
+        align-self: flex-start;
+    }
+
+    .hospital-status-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hospital-notification {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+}
